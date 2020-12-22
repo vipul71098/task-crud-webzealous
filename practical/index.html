@@ -1,0 +1,82 @@
+
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet prefetch" href="css/normalize.css">
+    <link rel="stylesheet prefetch" href="css/responsive.css">
+    <link rel="stylesheet prefetch" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <div class="mypanel"></div>
+    <div>
+        <div class="topbar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-s-4">
+                        <h1 class="push-left">ZealBlog</h1>
+                    </div>
+                    <div class="offset-s-4 col-s-4">
+                        <nav role='navigation' class="push-right">
+                            <ul>
+                                <li><a href="index.html">See All Posts</a></li> ||
+                                <li><a href="add-post.html">Add New Post</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="container">
+                <div class="row" id="row">
+                    <ul class="post-grid">
+                        <li ng-repeat="post in blog.posts" class="col-s-4">
+                            <h3><a href="view-post.html">title of post 1</a></h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin luctus ut erat a ornare. Suspendisse mollis pellentesque risus. Donec at suscipit mauris. Sed vitae lectus id lorem blandit aliquamß...</p>
+                            <p class="fa fa-comment push-right"> 10 (comments)
+                            </p>
+                        </li>
+                       
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    </body>
+</html>
+
+<script>
+$(document).ready(function(){
+           $.ajax({
+            url:"http://localhost:5000/api/user",
+            type: 'GET',
+           
+            success: function(data){
+             
+            
+    
+              var $title = $(".row ul li h3 a");
+              var $comment = $(".row  h3  p");
+              for(var i=0;i<data.length;i++){
+                  $title.append('<li>'+data[i].title+'</li>');
+                  $title.append('<p>'+data[i].body+'</p>');
+                  
+              }
+            }
+           });
+
+
+
+       });
+
+
+</script>
